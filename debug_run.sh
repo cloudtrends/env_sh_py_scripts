@@ -2,7 +2,7 @@
 
 
 
-REVEL_ROUTES_GENERATE_ROLLBACK_PY="revel_routes_generator_rollback.py"
+ROUTES_GENERATE_ROLLBACK_PY="routes_generator_rollback.py"
 
 ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### 
 
@@ -15,7 +15,7 @@ function rollback_routes() {
 
   print_ok "begin rollback conf to prebuild-conf  : app.conf and routes"
   is_check_app_type_and_instance_name="false"
-  python  ${REVEL_ROUTES_GENERATE_ROLLBACK_PY}  ${APP_TYPE}   ${APP_INSTANCE}  "rollback"   ${is_check_app_type_and_instance_name}
+  python  ${ROUTES_GENERATE_ROLLBACK_PY}  ${APP_TYPE}   ${APP_INSTANCE}  "rollback"   ${is_check_app_type_and_instance_name}
 }
 
 sync_views()
@@ -98,7 +98,7 @@ else
         print_ok "in DEBUG mode , app.conf do not change , so skip it ."
         print    "generate for routes "
         is_check_app_type_and_instance_name="false"
-        python ${REVEL_ROUTES_GENERATE_ROLLBACK_PY}   ${APP_TYPE}   ${APP_INSTANCE}  "generate" ${is_check_app_type_and_instance_name}
+        python ${ROUTES_GENERATE_ROLLBACK_PY}   ${APP_TYPE}   ${APP_INSTANCE}  "generate" ${is_check_app_type_and_instance_name}
         if [ 0 -eq $? ];then
           print_ok "generate routes ok"
         else
