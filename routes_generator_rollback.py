@@ -131,7 +131,7 @@ if __name__ == "__main__":
         # step theree
         print "step 3 : generate self header ( copy from prebuild-conf ) "
         self_header_lines = extract_self_headers( prebuild_conf_debug_conf_routes_file )
-        common_part_lines = extract_common_part( prebuild_conf_instance_conf_routes_file )
+        common_part_lines = extract_common_part( prebuild_conf_debug_conf_routes_file )
         self_part_lines = extract_self_part( prebuild_conf_instance_conf_routes_file )
         all_lines = self_header_lines + "\n" + common_part_lines + "\n" + self_part_lines + "\n"
         print "step 4: write to "
@@ -144,6 +144,7 @@ if __name__ == "__main__":
         self_part_lines = extract_self_part( debug_conf_routes )
         all_lines = self_header_lines + "\n" + common_part_lines + "\n" + self_part_lines + "\n"
         #
+        #
         os.system( "rm -f " + prebuild_conf_instance_conf_routes_file )
         os.system( "touch " + prebuild_conf_instance_conf_routes_file )
         comm_funcs.add_to_exist_file( prebuild_conf_instance_conf_routes_file  , all_lines  )
@@ -153,6 +154,17 @@ if __name__ == "__main__":
         comm_funcs.print_ok( unique_file_name ) 
         cp_cmd =  debug_conf_routes + " " + curr_dir + "/prebuild-conf/" + app_type + "/local_debug/conf/" + unique_file_name 
         os.system( "cp " + cp_cmd )
+        #
+        # remove old : prebuild_conf_debug_conf_routes_file
+        __self_header_lines = extract_self_headers( prebuild_conf_debug_conf_routes_file )
+        __common_part_lines = extract_common_part( debug_conf_routes )
+        __self_part_lines   = extract_self_part( prebuild_conf_debug_conf_routes_file )
+        __all_lines = __self_header_lines + "\n" + __common_part_lines + "\n" + __self_part_lines + "\n"
+        if os.path.exists( prebuild_conf_debug_conf_routes_file ):
+            os.remove( prebuild_conf_debug_conf_routes_file )
+        os.system( "rm -f " + prebuild_conf_debug_conf_routes_file )
+        os.system( "touch " + prebuild_conf_debug_conf_routes_file )
+        comm_funcs.add_to_exist_file( prebuild_conf_debug_conf_routes_file  , __all_lines  )
         #
         if os.path.exists( debug_conf_routes ):
             os.remove( debug_conf_routes )

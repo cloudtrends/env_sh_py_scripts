@@ -1,7 +1,10 @@
-
-
+# -*- coding: utf-8 –*-
 import sys
+reload(sys)
 import os
+sys.setdefaultencoding('utf8')
+sys.path.append(os.getcwd())
+
 
 ### ### ### ### ### ### ### ### ### ### ### ### 
 BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
@@ -63,15 +66,21 @@ def get_file_content_as_list( file_name ):
     f.close()
     return lines
 
+def get_gopath():
+    return os.environ['GOPATH']
 def get_projects_str():
-    gopath = os.environ['GOPATH']
+    gopath = get_gopath()
     if 0 == len(gopath):
         print_error( "ERROR GOPATH not set." )
+        sys.exit(1)
     proj_file = gopath + "/gobbs_projects.txt"
+    if not os.path.exists( proj_file ):
+        print_error("ERROR proj_file not exit :" + proj_file )
+        sys.exit(1)
     contents = get_file_content_as_list(proj_file)
     cs = ""
     for one in contents:
-        cs = cs + one
+        cs = cs + " " + one
     return cs
 
 def check_app_type_and_instance_name( app_type , instance_name ):

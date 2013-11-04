@@ -1,12 +1,13 @@
-
-
-
-
+# -*- coding: utf-8 –*-
 import sys
+reload(sys)
 import os
+sys.setdefaultencoding('utf8')
+sys.path.append(os.getcwd())
 import subprocess
 import shutil
 import comm_funcs
+
 
 def print_error(text):
     comm_funcs.print_error(text)
