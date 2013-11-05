@@ -9,12 +9,14 @@ instance_name=$3
 app_type=$4
 
 print_ok "cd $dir"
-cd $dir
+cd ${GOPATH}/${app_type}
 
 print_ok "begin tar zxf file $tar_file"
 tar zxf $tar_file
 
-cd instance_name
-nohup ./${app_type} &
-
-
+print_ok "cd instance_name"
+print_ok "curr dir :${MY_DIR}"
+cd $instance_name
+echo "pwd is:"
+pwd
+nohup ./run.sh &

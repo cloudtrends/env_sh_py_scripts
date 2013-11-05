@@ -13,7 +13,7 @@ import time
 if __name__ == "__main__":
     """
     """
-    if 3 != len(sys.argv)
+    if 3 != len(sys.argv):
         comm_funcs.print_error(" arguments : app_type and instance_name  need assigned ")
         comm_funcs.print_error(  "ERROR EXIT PYTHON" )
         sys.exit(1)
@@ -48,7 +48,9 @@ if __name__ == "__main__":
     os.system(gopath + "/kill_port_ps.sh " + inst_port)
     unique_file_name = instance_name + "_" + str( time.time() ) + ".bak" 
     os.system("mv " + gopath + "/" + app_type + "/" + instance_name + " " + gopath + "/" + app_type + "/" + unique_file_name )
-    os.system("./tar_zxf.sh " + gopath + "/" + app_type +  " " + instance_name + ".tar.gz" + " " + instance_name + " " + app_type)
+    print "./prod_xzf_run.sh " + gopath + "/" + app_type +  " " + instance_name + ".tar.gz" + " " + instance_name + " " + app_type
+    
+    os.system("./prod_xzf_run.sh " + gopath + "/" + app_type +  " " + instance_name + ".tar.gz" + " " + instance_name + " " + app_type)
 
 
 
