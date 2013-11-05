@@ -85,6 +85,12 @@ print_ok "GO INTO SHELL"
 print "shell prepare app view for app instance:${APP_INSTANCE}"
 
 if [ -d ${APP_INSTANCE_VIEWS_DIR} ];then
+    print_ok "find views for :${APP_INSTANCE_VIEWS_DIR} , move to tmp dir : instance_views_bak "
+    mkdir -p ~/tmp/instance_views_bak
+    mv ${APP_INSTANCE_VIEWS_DIR} ~/tmp/instance_views_bak
+    
+fi
+if [ -d ${APP_INSTANCE_VIEWS_DIR} ];then
     print_ok "find views for :${APP_INSTANCE_VIEWS_DIR}"
 else
     print "HINT: not find view for:${APP_INSTANCE_VIEWS_DIR} , prepare for it ... ... ..."
