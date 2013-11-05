@@ -27,7 +27,7 @@ if __name__ == "__main__":
     if not os.path.exists( instance_targz_full_path ):
         comm_funcs.print_error("ERROR: instance_targz_full_path not set:" + instance_targz_full_path)
         sys.exit(1)
-    inst_ports_lines = comm_funcs.get_file_content_as_list(goapth + "/" + "instance_and_ports.txt")
+    inst_ports_lines = comm_funcs.get_file_content_as_list(gopath + "/" + "instance_and_ports.txt")
     inst_port = ""
     for one in inst_ports_lines:
         one = one.strip()
