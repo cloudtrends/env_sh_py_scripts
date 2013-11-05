@@ -37,7 +37,7 @@ control_c()
   sync_views
 
 
-  print_ok "EXIT SHELL"
+  print_ok "EXIT SHELL , traped the control_c."
   exit $?
 }
 
@@ -104,14 +104,14 @@ else
         else
           rollback_views
           print_error "ERROR , when generate routes ."
-          print_error "EXIT SHELL"
+          print_error "EXIT SHELL , abort."
           exit 1
         fi
 
     else
         print_error "${REPO_INSTANCE_VIEWS_DIR} "
         print_error "ERROR" "${REPO_INSTANCE_VIEWS_DIR} views dir is not in gobbs_views dir ${REPO_VIEWS_DIR}  "
-        print_error "EXIT"
+        print_error "EXIT SHELL , abort"
         exit 1
     fi
 fi
@@ -135,11 +135,18 @@ revel run ${APP_TYPE}
 if ! [ $? -eq 0 ];then
   print_error " run error , so rollback"
   sync_views
+  print_ok "Done, rollback"
+  exit 0
 else
   print_ok " run ok ... ... "
 fi
 
-print_ok "EXIT SHELL"
+sync_views
+print_error "EXIT SHELL , unknow status "
+
+
+
+
 
 
 
