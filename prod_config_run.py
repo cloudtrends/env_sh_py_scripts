@@ -45,7 +45,7 @@ if __name__ == "__main__":
     if 0 == len(inst_port):
         comm_funcs.print_error("ERROR: port of " + instance_name + " not found.")
         sys.exit(1)
-    os.system(gopath + "/kill_port_ps.sh " + inst_port)
+    os.system(gopath + "/kill_port_ps.sh " + inst_port )
     unique_file_name = instance_name + "_" + str( time.time() ) + ".bak" 
     os.system("mv " + gopath + "/" + app_type + "/" + instance_name + " " + gopath + "/" + app_type + "/" + unique_file_name )
     print "./prod_xzf_run.sh " + gopath + "/" + app_type +  " " + instance_name + ".tar.gz" + " " + instance_name + " " + app_type

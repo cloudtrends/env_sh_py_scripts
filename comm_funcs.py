@@ -1,8 +1,8 @@
 # -*- coding: utf-8 –*-
 import sys
+sys.setdefaultencoding('utf8')
 reload(sys)
 import os
-sys.setdefaultencoding('utf8')
 sys.path.append(os.getcwd())
 
 
