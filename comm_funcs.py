@@ -1,10 +1,9 @@
 # -*- coding: utf-8 –*-
 import sys
-sys.setdefaultencoding('utf8')
 reload(sys)
 import os
 sys.path.append(os.getcwd())
-
+#sys.setdefaultencoding('utf8')
 
 ### ### ### ### ### ### ### ### ### ### ### ### 
 BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)

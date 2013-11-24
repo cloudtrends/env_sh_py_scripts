@@ -35,6 +35,7 @@ if __name__ == "__main__":
             continue
         ones = one.split(",")
         if 2 != len(ones):
+            comm_funcs.print_error("PYTHON ERROR: length not right :" + one )
             continue
         inst = ones[0].strip()
         if inst != instance_name:
@@ -43,7 +44,7 @@ if __name__ == "__main__":
         inst_port = port
         break
     if 0 == len(inst_port):
-        comm_funcs.print_error("ERROR: port of " + instance_name + " not found.")
+        comm_funcs.print_error("PYTHON ERROR: port of " + instance_name + " not found.")
         sys.exit(1)
     os.system(gopath + "/kill_port_ps.sh " + inst_port )
     unique_file_name = instance_name + "_" + str( time.time() ) + ".bak" 
