@@ -84,8 +84,10 @@ def config_conf_and_routes(app_type, TmpAppTypeDir, InstancePreBuildConfDir):
         sys.exit(1)
     if os.path.exists( AppConfDir + "/app.conf"  ):
         os.remove( AppConfDir + "/app.conf"  )
+        os.system( "rm -f " +  AppConfDir + "/app.conf"   )
     if os.path.exists( AppConfDir + "/routes" ):
         os.remove( AppConfDir + "/routes"  )
+        os.system( "rm -f " +  AppConfDir + "/routes" )
     shutil.copy2(InstancePreBuildConfDir + "/conf/app.conf"  , AppConfDir)
     shutil.copy2(InstancePreBuildConfDir + "/conf/routes" , AppConfDir)
     #generate 
