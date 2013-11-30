@@ -127,6 +127,9 @@ if __name__ == "__main__":
         /home/golang/
 
     """
+    pull_cmd = "python test_auto_gitpush.py pull "
+    os.system(  pull_cmd  )
+
     print_ok( """echo "export PKG_CONFIG_PATH=/usr/local/Cellar/sqlite/3.7.17/lib/pkgconfig:${PKG_CONFIG_PATH}"
 export PKG_CONFIG_PATH="/usr/local/Cellar/sqlite/3.7.17/lib/pkgconfig:${PKG_CONFIG_PATH}"
 " """ )
