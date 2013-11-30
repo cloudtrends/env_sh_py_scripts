@@ -106,6 +106,7 @@ def check_app_type_and_instance_name( app_type , instance_name ):
         all_instance_name = all_instance_name + " " + one 
     if not find_instance :
             print_error( "instance :" + instance_name + " not in instance_name list :"  )
+            print_error( " check your app_views_dir: " + app_views_dir )
             print all_instance_name
             return False
     return True
