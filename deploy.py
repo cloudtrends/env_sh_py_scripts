@@ -89,7 +89,11 @@ def config_conf_and_routes(app_type, TmpAppTypeDir, InstancePreBuildConfDir):
         os.remove( AppConfDir + "/routes"  )
         os.system( "rm -f " +  AppConfDir + "/routes" )
     shutil.copy2(InstancePreBuildConfDir + "/conf/app.conf"  , AppConfDir)
+    os.system( "cp "  + InstancePreBuildConfDir + "/conf/app.conf" + "  " + AppConfDir)
+    print_ok( "cp "  + InstancePreBuildConfDir + "/conf/app.conf" + "  " + AppConfDir )
     shutil.copy2(InstancePreBuildConfDir + "/conf/routes" , AppConfDir)
+    print_ok( "cp " + InstancePreBuildConfDir + "/conf/routes"  + "  " + AppConfDir )
+    os.system( "cp " + InstancePreBuildConfDir + "/conf/routes"  + "  " + AppConfDir )
     #generate 
     
 
