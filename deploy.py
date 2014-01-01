@@ -181,8 +181,17 @@ export PKG_CONFIG_PATH="/usr/local/Cellar/sqlite/3.7.17/lib/pkgconfig:${PKG_CONF
     #
     #upload to ....
     # ssh remotehost "rm -f /home/golang/app_type/instance_name.tar.gz"
-    os.system( " ssh  " + remote_site + "\" rm -f /home/golang/" + app_type + "/" +  InstanceTarFile )
-    os.system( " scp  " + CurrTmpDir + "/" + InstanceTarFile +"  " + remote_site + ":/home/golang/" + app_type + "/" )
+    if remote_site == "localhost" :
+        cmd_str = " rm -rf /home/golang/" + app_type + "/" + instance_name 
+        os.system( cmd_str )
+        cmd_str = " mkdir -p  /home/golang/" + app_type + "/"
+        os.system( cmd_str )
+        cmd_str = " cp  " + CurrTmpDir + "/" + InstanceTarFile + " /home/golang/" + app_type
+        os.system( cmd_str )
+        pass
+    else:
+        os.system( " ssh  " + remote_site + "\" rm -f /home/golang/" + app_type + "/" +  InstanceTarFile )
+        os.system( " scp  " + CurrTmpDir + "/" + InstanceTarFile +"  " + remote_site + ":/home/golang/" + app_type + "/" )
 
 
 
