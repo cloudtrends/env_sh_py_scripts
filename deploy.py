@@ -99,7 +99,9 @@ def config_conf_and_routes(app_type, TmpAppTypeDir, InstancePreBuildConfDir):
 
 
 def clean_public_dir_content(TmpInstanceDir, app_type):
-    os.system( "rm -rf "  + TmpInstanceDir + "/src/gobbs/public/ria/" )
+    cmd = "rm -rf "  + TmpInstanceDir + "/src/gobbs/public/ria/"
+    comm_funcs.print_ok("begin remove content : " + cmd_str)
+    os.system( cmd_str )
     pass
 
 def re_tar_app(tmp_dir , tar_file_name , dest_dir):
