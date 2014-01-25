@@ -98,7 +98,9 @@ def config_conf_and_routes(app_type, TmpAppTypeDir, InstancePreBuildConfDir):
     
 
 
-
+def clean_public_dir_content(TmpInstanceDir, app_type):
+    os.system( "rm -rf "  + TmpInstanceDir + "/src/gobbs/public/ria/" )
+    pass
 
 def re_tar_app(tmp_dir , tar_file_name , dest_dir):
     """
@@ -177,6 +179,11 @@ export PKG_CONFIG_PATH="/usr/local/Cellar/sqlite/3.7.17/lib/pkgconfig:${PKG_CONF
     dest_dir = "./" + instance_name
     #change name from app_type to instance name
     os.system( "mv " + TmpAppTypeDir + " " + TmpInstanceDir  )
+    #
+    comm_funcs.print_ok("Begin re tar app , remove content witch not belone to this app type :"  + app_type )
+    comm_funcs.print_ok("such as : ria tmp/"+ instance_name +"/src/gobbs/public/ria/ ")
+    clean_public_dir_content(TmpInstanceDir, app_type)
+    #
     re_tar_app( CurrTmpDir , InstanceTarFile , dest_dir )
     #
     #upload to ....

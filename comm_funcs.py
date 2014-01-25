@@ -40,6 +40,9 @@ def helloworld():
     print "helloworld"
 
 def listdir_fullpath(d):
+    if not os.path.exists( d ):
+        print_error("listdir_full path: ERROR dir not exit :" + d )
+        sys.exit(1)
     return [os.path.join(d, f) for f in os.listdir(d)]
 
 
@@ -67,6 +70,26 @@ def get_file_content_as_list( file_name ):
 
 def get_gopath():
     return os.environ['GOPATH']
+
+
+def get_projects_str_by_app_type(app_type=""):
+    #if "gobbs" == app_type:
+    #    return get_projects_str()
+    gopath = get_gopath()
+    if 0 == len(gopath):
+        print_error( "ERROR GOPATH not set." )
+        sys.exit(1)
+    proj_file = gopath + "/" + app_type + "_projects.txt"
+    if not os.path.exists( proj_file ):
+        print_error("ERROR proj_file not exit :" + proj_file )
+        sys.exit(1)
+    contents = get_file_content_as_list(proj_file)
+    cs = ""
+    for one in contents:
+        cs = cs + " " + one
+    print cs
+    return cs
+
 def get_projects_str():
     gopath = get_gopath()
     if 0 == len(gopath):
@@ -84,7 +107,7 @@ def get_projects_str():
 
 def check_app_type_and_instance_name( app_type , instance_name ):
     print "app type:", app_type
-    if app_type not in get_projects_str():
+    if app_type not in get_projects_str_by_app_type(app_type):
         print_error("ERROR\n")
         print_error(  "not find app type:"+ app_type )
         return False

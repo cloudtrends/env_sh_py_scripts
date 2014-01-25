@@ -52,11 +52,20 @@ if __name__ == "__main__":
         comm_funcs.print_error("ERROR: app_type or instance_name not match")
         sys.exit(1)
     #run_program()
-    try:
-        print "export PATH=\"$PATH:$GOPATH/bin\""
-        os.system("export PATH=\"$PATH:$GOPATH/bin\"")
-        os.system("./debug_run.sh " + app_type + " "  + instance_name )
-    except KeyboardInterrupt:
-        comm_funcs.print_error( "Ctrl+C capture ")
-        sys.exit(1)
+    print "export PATH=\"$PATH:$GOPATH/bin\""
+    os.system("export PATH=\"$PATH:$GOPATH/bin\"")
+    if app_type == "gobbs":
+        try:
+            os.system("./debug_run.sh " + app_type + " "  + instance_name )
+        except KeyboardInterrupt:
+            comm_funcs.print_error( "Ctrl+C capture ")
+            sys.exit(1)
+    if app_type == "martini":
+        comm_funcs.print_ok("begin debug_run_martini.sh ")
+        try:
+            os.system("./debug_run_martini.sh " + app_type + " "  + instance_name )
+        except KeyboardInterrupt:
+            comm_funcs.print_error( "Ctrl+C capture ")
+            sys.exit(1)
+        pass
 

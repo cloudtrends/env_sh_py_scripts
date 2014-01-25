@@ -151,10 +151,3 @@ sync_views
 print_error "EXIT SHELL , unknow status "
 
 
-
-
-
-
-
-
-
