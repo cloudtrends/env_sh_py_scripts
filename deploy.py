@@ -167,8 +167,16 @@ export PKG_CONFIG_PATH="/usr/local/Cellar/sqlite/3.7.17/lib/pkgconfig:${PKG_CONF
     TmpInstanceDir = CurrTmpDir +"/"+ instance_name
     TmpInstanceAppTypeViewsDir = TmpAppTypeDir + "/src/" + app_type + "/app/views"   
     prepare_tmp_dir(app_type, TmpAppTypeDir, AppTypeTarFile)
-    print "begin deploy ... "
+    print "begin package app ... "
+    comm_funcs.print_ok("Before revel package app , we should custom app.conf file.")
+    comm_funcs.print_ok("First remove the old conf : src/gobbs/conf/app.conf ")
+    cmd_str_tmp = "rm -f ./src/gobbs/conf/app.conf "
+    os.system( cmd_str_tmp )
+    comm_funcs.print_ok("Second , copy app type conf to here ")
+    cmd_str_tmp=" cp  ./prebuild-conf/gobbs/" + instance_name + "/conf/app.conf ./src/gobbs/conf/ "
+    os.system( cmd_str_tmp )
     package_app(app_type)
+    #
     post_prepare_tmp_dir(app_type, TmpAppTypeDir, AppTypeTarFile )
     config_conf_and_routes(app_type, TmpAppTypeDir , InstancePreBuildConfDir)
     if os.path.exists( TmpInstanceAppTypeViewsDir + "/" + instance_name ):
